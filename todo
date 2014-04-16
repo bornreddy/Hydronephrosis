@@ -1,0 +1,5 @@
+- create gui that allows programmer to pull up image and plot kidney outline points - maybe always ensure 10 points are plotted. this is the kidney
+- create a boundary of those points. straight line? curved line? assisted by the image?
+- find the area of the image inside that boundary. this is the kidney!!
+- in the area of interest, find the black area. this is the collection system.
+- provide the ratio of the parynchema to the collection system
