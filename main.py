@@ -23,11 +23,13 @@ img = cv2.imread('lt_long.jpg', 0)
 cv2.imshow('image', img)
 cv.SetMouseCallback('image', on_mouse, 0)
 
-def draw_p_area():
-  for x in range( 1, (len(parenchyma)-1) ):
-    points = np.array([parenchyma[0], parenchyma[x], parenchyma[x+1]])
-    cv2.polylines(img, np.int32([points]), 1, (255,255,255))
-    cv2.imshow('image',img)
+# def draw_p_area():
+#   area = 0
+#   for x in range( 1, (len(parenchyma)-1) ):
+#     points = np.array([parenchyma[0], parenchyma[x], parenchyma[x+1]])
+#     cv2.polylines(img, np.int32([points]), 1, (255,255,255))
+#     cv2.imshow('image',img)
+
 
 while(1):
   # wait indefinitely for a key to be pressed
@@ -36,7 +38,7 @@ while(1):
   if (k == 13):
     cv2.line(img, parenchyma[0], parenchyma[-1], (255,0,0), 1)
     cv2.imshow('image', img)
-    draw_p_area()
+    # draw_p_area()
   # if key pressed is 'esc' close window
   elif (k == 27):
     cv2.destroyAllWindows()
