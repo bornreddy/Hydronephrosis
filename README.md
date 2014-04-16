@@ -1,0 +1,1 @@
+This project allows one to obtain the ratio of parenchyma to collection tissue in a kidney. The purpose of this project is to numerically grade the health of renal tissue.
