@@ -26,7 +26,6 @@ cv.SetMouseCallback('image', on_mouse, 0)
 
 #works for likely kidney shapes - only works on some nonconvex shapes :(
 def draw_p_area():
-
   x_average = 0
   y_average = 0
   for z in range(0, len(parenchyma) ):
@@ -34,7 +33,7 @@ def draw_p_area():
     y_average = y_average + parenchyma[z][1]
   x_average = x_average/len(parenchyma)
   y_average = y_average/len(parenchyma)
-  # print_par()
+  # print_par
   print "xaverage: " + str(x_average)
   print "yaverage: " + str(y_average)
   for x in range( 0, (len(parenchyma)-1) ):
@@ -68,8 +67,17 @@ while(1):
     cv2.imshow('image', img)
     calculate_p_area()
     draw_p_area()
+    #draw all contour area here:
+    # imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    # ret,thresh = cv2.threshold(img,127,255,0)
+    # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    # print "drawing contours: ", contours
+    # cv2.drawContours(img, contours, -1, (0,255,0), 3)
+    # print "drew contours"
+    # sh = img.shape
+    # print "sh", sh
+    # print "height: " + str(height) + " width: " + str(width) + "x: " + x
   # if key pressed is 'esc' close window
   elif (k == 27):
     cv2.destroyAllWindows()
-
     break 
