@@ -20,7 +20,9 @@ def print_par():
     print "p[1]: " + str(p[1])
 
 # Set up image window
-img = cv2.imread('lt_long.jpg', 0)
+img = cv2.imread('lt_long.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE)
+(thresh, im_bw) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+cv2.imwrite('lt_bw_image.png', im_bw)
 cv2.imshow('image', img)
 cv.SetMouseCallback('image', on_mouse, 0)
 
@@ -67,16 +69,13 @@ while(1):
     cv2.imshow('image', img)
     calculate_p_area()
     draw_p_area()
+
     #draw all contour area here:
     # imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     # ret,thresh = cv2.threshold(img,127,255,0)
     # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
     # print "drawing contours: ", contours
     # cv2.drawContours(img, contours, -1, (0,255,0), 3)
-    # print "drew contours"
-    # sh = img.shape
-    # print "sh", sh
-    # print "height: " + str(height) + " width: " + str(width) + "x: " + x
   # if key pressed is 'esc' close window
   elif (k == 27):
     cv2.destroyAllWindows()
