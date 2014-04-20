@@ -21,8 +21,10 @@ def print_par():
 
 # Set up image window
 img = cv2.imread('lt_long.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE)
-(thresh, im_bw) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-cv2.imwrite('lt_bw_image.png', im_bw)
+thresh = 20
+im_bw = cv2.threshold(img, thresh, 255, cv2.THRESH_BINARY)[1]
+# (thresh, im_bw) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+cv2.imwrite('lt_bw_img.png', im_bw)
 cv2.imshow('image', img)
 cv.SetMouseCallback('image', on_mouse, 0)
 
@@ -71,11 +73,20 @@ while(1):
     draw_p_area()
 
     #draw all contour area here:
-    # imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    # ret,thresh = cv2.threshold(img,127,255,0)
-    # contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-    # print "drawing contours: ", contours
-    # cv2.drawContours(img, contours, -1, (0,255,0), 3)
+    p_array = np.array( parenchyma )
+    width, height = im_bw.shape
+    black = 0.0
+    p_points = 0.0
+    for i in range(0,width):
+      for j in range(0,height):
+        if cv2.pointPolygonTest(p_array,(i,j),False) >= 0:
+          p_points = p_points + 1
+          if (im_bw[i,j] == 0):
+            black = black + 1
+          # print "pixel color: ", im_bw[i,j]
+    print "ratio of black to total: ", black/p_points
+
+
   # if key pressed is 'esc' close window
   elif (k == 27):
     cv2.destroyAllWindows()
