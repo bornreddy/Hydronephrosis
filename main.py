@@ -48,8 +48,6 @@ def draw_p_area():
   cv2.polylines(img, np.int32([points]), 1, (255,255,255))
   cv2.imshow('image',img)
 
-
-
 #algorithm to find the area of the nonregulare polygon (parenchyma)
 def calculate_p_area():
   a_val = 0
@@ -71,7 +69,6 @@ while(1):
     cv2.imshow('image', img)
     calculate_p_area()
     draw_p_area()
-
     #draw all contour area here:
     p_array = np.array( parenchyma )
     width, height = im_bw.shape
